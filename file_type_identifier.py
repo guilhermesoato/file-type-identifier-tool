@@ -65,13 +65,6 @@ def display_welcome_message():
    • ZIP   - ZIP Archive Format
    • EXE   - Windows Executable Format
 
-⚙️ HOW IT WORKS:
-   1. Enter the full path to the file you want to analyze
-   2. The tool reads the file's header (first bytes)
-   3. Compares the header against known magic numbers
-   4. Validates the detected type against file extension
-   5. Reports any mismatches found
-
 📌 USAGE INSTRUCTIONS:
    • Provide the ABSOLUTE PATH to your file (e.g., C:\\Users\\MyFolder\\file.pdf)
    • The tool works with any file, regardless of current extension
