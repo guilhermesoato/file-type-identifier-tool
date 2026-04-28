@@ -100,6 +100,14 @@ def main():
         print("File not found.")
     except Exception as e:
         print(f"Error analyzing the file: {e}")
+    
+    # Keep the window open so users can see the results
+    print("\n" + "="*80)
+    try:
+        input("Press Enter to exit...")
+    except EOFError:
+        # Program is running without interactive terminal input
+        pass
 
 if __name__ == "__main__":
     main()
