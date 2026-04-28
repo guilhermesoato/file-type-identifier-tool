@@ -45,9 +45,51 @@ def check_mismatch(real_type, extension):
         return "⚠️ POSSIBLE MISMATCH: Real type is {} but extension is {}".format(real_type, extension)
     else:
         return "✅ Compatible type"
-    
+
+# This function displays a welcome message with instructions for the user.
+def display_welcome_message():
+    welcome_text = """
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                   Welcome to File Type Identifier Tool                       ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+📋 ABOUT THIS TOOL:
+   This tool analyzes files to detect their real type based on magic numbers
+   (file signatures) and compares it with the file extension to identify
+   potential mismatches or suspicious files.
+
+🔍 SUPPORTED FILE TYPES:
+   • PDF   - Portable Document Format
+   • JPG   - JPEG Image Format
+   • PNG   - Portable Network Graphics
+   • ZIP   - ZIP Archive Format
+   • EXE   - Windows Executable Format
+
+⚙️ HOW IT WORKS:
+   1. Enter the full path to the file you want to analyze
+   2. The tool reads the file's header (first bytes)
+   3. Compares the header against known magic numbers
+   4. Validates the detected type against file extension
+   5. Reports any mismatches found
+
+📌 USAGE INSTRUCTIONS:
+   • Provide the ABSOLUTE PATH to your file (e.g., C:\\Users\\MyFolder\\file.pdf)
+   • The tool works with any file, regardless of current extension
+   • File extension is case-insensitive
+   • No files are modified or moved during analysis
+
+⚠️ EXPECTED OUTPUT:
+   ✅ Compatible type     → File extension matches the detected type
+   ⚠️ POSSIBLE MISMATCH   → File type differs from extension (suspicious!)
+   ❓ Unknown extension   → File extension not recognized by the tool
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"""
+    print(welcome_text)
+
 def main():
-    file_path = input("Type the archive path: ")
+    display_welcome_message()
+    file_path = input("📁 Type the archive path: ")
 
     try:
         header = read_file_header(file_path)
