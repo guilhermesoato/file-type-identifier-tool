@@ -80,10 +80,8 @@ def display_welcome_message():
 """
     print(welcome_text)
 
-def main():
-    display_welcome_message()
-    file_path = input("📁 Type the archive path: ")
-
+def analyze_file(file_path):
+    """Analyze a single file and display the results."""
     try:
         header = read_file_header(file_path)
         real_type = identify_file_type(header)
@@ -97,17 +95,40 @@ def main():
         print(f"Result: {result}")
 
     except FileNotFoundError:
-        print("File not found.")
+        print("❌ File not found.")
     except Exception as e:
-        print(f"Error analyzing the file: {e}")
+        print(f"❌ Error analyzing the file: {e}")
+
+def main():
+    display_welcome_message()
     
-    # Keep the window open so users can see the results
-    print("\n" + "="*80)
-    try:
-        input("Press Enter to exit...")
-    except EOFError:
-        # Program is running without interactive terminal input
-        pass
+    while True:
+        file_path = input("📁 Type the archive path: ")
+        
+        if not file_path.strip():
+            print("❌ Please provide a valid file path.")
+            continue
+        
+        # Analyze the file
+        analyze_file(file_path)
+        
+        # Ask if user wants to analyze another file
+        print("\n" + "="*80)
+        while True:
+            try:
+                another = input("🔄 Analyze another file? (yes/no): ").strip().lower()
+            except EOFError:
+                # Program is running without interactive terminal input
+                another = "no"
+            
+            if another in ['yes', 'y']:
+                print("\n" + "="*80 + "\n")
+                break
+            elif another in ['no', 'n']:
+                print("\n👋 Thank you for using File Type Identifier Tool!")
+                return
+            else:
+                print("⚠️ Please enter 'yes' or 'no'.")
 
 if __name__ == "__main__":
     main()
